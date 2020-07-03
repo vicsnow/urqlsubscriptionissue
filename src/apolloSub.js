@@ -34,13 +34,13 @@ function Window({q}) {
 					return "Error or shit";
 				}
 
-				return data.driveWindowChanged
-					? data.driveWindowChanged.map((d) => (
-							<div style={{border:"1px solid black"}}>
-								{d.Position}
-							</div>
-					  ))
-					: "nil";
+				return data.driveWindowChanged ? (
+					<div style={{border: "1px solid black"}}>
+						{data.driveWindowChanged.length}
+					</div>
+				) : (
+					"nil"
+				);
 			}}
 		</Subscription>
 	);
@@ -50,7 +50,6 @@ const subCount = `
 		debug
 	}
 `;
-
 
 export default () => {
 	const [q, setq] = useState([sb1, sb1, sb3]);
