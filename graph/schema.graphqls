@@ -1,0 +1,13 @@
+type GuiDriveDraw {
+	Position: String!
+	Mnemonic: String!
+}
+type Subscription {
+	driveWindowChanged(page: Int!, count: Int!): [GuiDriveDraw!]!
+}
+type Query {
+	hello: String!
+}
+type Mutation {
+	fuck: String!
+}
