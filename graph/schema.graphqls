@@ -9,5 +9,5 @@ type Query {
 	hello: String!
 }
 type Mutation {
-	fuck: String!
+	mock: String!
 }

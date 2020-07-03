@@ -51,7 +51,7 @@ type ComplexityRoot struct {
 	}
 
 	Mutation struct {
-		Fuck func(childComplexity int) int
+		Mock func(childComplexity int) int
 	}
 
 	Query struct {
@@ -64,7 +64,7 @@ type ComplexityRoot struct {
 }
 
 type MutationResolver interface {
-	Fuck(ctx context.Context) (string, error)
+	Mock(ctx context.Context) (string, error)
 }
 type QueryResolver interface {
 	Hello(ctx context.Context) (string, error)
@@ -102,12 +102,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.GuiDriveDraw.Position(childComplexity), true
 
-	case "Mutation.fuck":
-		if e.complexity.Mutation.Fuck == nil {
+	case "Mutation.mock":
+		if e.complexity.Mutation.Mock == nil {
 			break
 		}
 
-		return e.complexity.Mutation.Fuck(childComplexity), true
+		return e.complexity.Mutation.Mock(childComplexity), true
 
 	case "Query.hello":
 		if e.complexity.Query.Hello == nil {
@@ -220,7 +220,7 @@ type Query {
 	hello: String!
 }
 type Mutation {
-	fuck: String!
+	mock: String!
 }
 `, BuiltIn: false},
 }
@@ -370,7 +370,7 @@ func (ec *executionContext) _GuiDriveDraw_Mnemonic(ctx context.Context, field gr
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) _Mutation_fuck(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+func (ec *executionContext) _Mutation_mock(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
 	defer func() {
 		if r := recover(); r != nil {
 			ec.Error(ctx, ec.Recover(ctx, r))
@@ -387,7 +387,7 @@ func (ec *executionContext) _Mutation_fuck(ctx context.Context, field graphql.Co
 	ctx = graphql.WithFieldContext(ctx, fc)
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().Fuck(rctx)
+		return ec.resolvers.Mutation().Mock(rctx)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -1668,8 +1668,8 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 		switch field.Name {
 		case "__typename":
 			out.Values[i] = graphql.MarshalString("Mutation")
-		case "fuck":
-			out.Values[i] = ec._Mutation_fuck(ctx, field)
+		case "mock":
+			out.Values[i] = ec._Mutation_mock(ctx, field)
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}

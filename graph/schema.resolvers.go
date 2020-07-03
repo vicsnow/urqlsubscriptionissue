@@ -12,7 +12,7 @@ import (
 	"github.com/vicsnow/gqlgen-todos/graph/model"
 )
 
-func (r *mutationResolver) Fuck(ctx context.Context) (string, error) {
+func (r *mutationResolver) Mock(ctx context.Context) (string, error) {
 	panic(fmt.Errorf("not implemented"))
 }
 
