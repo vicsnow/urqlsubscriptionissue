@@ -62,3 +62,6 @@ Also clicking between `q111` and `q113`.
 But is seems, that `q223` resets this behaviour just fine, so there is that.
 
 `index.js` has a fork between `urql` and `react-apollo`, with identical subscription components, and strangely, `react-apollo` does not resemle this behaviour.
+
+Here is a 19 second video of this
+[https://youtu.be/3yjHtEP3xgY](url)
